@@ -1,0 +1,41 @@
+apply plugin: 'java'
+apply plugin: 'eclipse'
+
+sourceCompatibility = 1.7
+version = '1.0'
+jar {
+    manifest {
+        attributes 'Implementation-Title': 'Gradle Quickstart',
+                   'Implementation-Version': version
+    }
+}
+
+repositories {
+    mavenCentral()
+     
+     maven {
+        url 'https://github.com/psiegman/mvn-repo/raw/master/releases'
+    }
+}
+
+dependencies {
+    compile group: 'commons-collections', name: 'commons-collections', version: '3.2'
+    compile group: 'org.jsoup', name: 'jsoup', version: '1.11.2'
+    compile group: 'nl.siegmann.epublib', name: 'epublib-core', version: '3.1'
+    compile group: 'org.apache.logging.log4j', name: 'log4j-api', version: '2.10.0'
+  	compile group: 'org.apache.logging.log4j', name: 'log4j-core', version: '2.10.0'
+	compile group: 'commons-net', name: 'commons-net', version: '3.6'
+    testCompile group: 'junit', name: 'junit', version: '4.+'
+}
+
+test {
+    systemProperties 'property': 'value'
+}
+
+uploadArchives {
+    repositories {
+       flatDir {
+           dirs 'repos'
+       }
+    }
+}
