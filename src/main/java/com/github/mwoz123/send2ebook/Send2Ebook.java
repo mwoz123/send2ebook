@@ -27,8 +27,10 @@ public class Send2Ebook {
 
 			InputProcessor<String> inputProcessor = new UrlInputProcessor();
 			Converter<EpubEbook> converter = new EpubCreator();
+			
 			Storage storage = FtpStorage.getInstance();
-
+			Connection connection = getConnectionFromPropertyFile();
+			
 			for (String url : args) {
 				logger.info("Starting download and clean up");
 
@@ -36,8 +38,6 @@ public class Send2Ebook {
 
 				logger.debug("Creating Epub");
 				Ebook ebook = converter.createOutputEbook(ebookData);
-
-				Connection connection = getConnectionFromFile();
 
 				logger.debug("Connecting to storage server");
 				storage.connect(connection);
@@ -53,7 +53,7 @@ public class Send2Ebook {
 		}
 	}
 
-	private static Connection getConnectionFromFile() throws IOException {
+	private static Connection getConnectionFromPropertyFile() throws IOException {
 		String connectionFilePath = System.getProperty("connection.file.path");
 
 		try {

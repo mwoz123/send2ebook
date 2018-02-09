@@ -12,6 +12,8 @@ import com.github.mwoz123.send2ebook.model.EbookData;
 import com.github.mwoz123.send2ebook.model.epub.EpubEbook;
 
 public class EpubCreator implements Converter<EpubEbook>{
+	
+	private final static String HTML_EXTENSION = ".html";
 
 	public EpubEbook createOutputEbook(EbookData ebookData)
 			throws IOException {
@@ -28,7 +30,7 @@ public class EpubCreator implements Converter<EpubEbook>{
 	private void addAllElemntsToBook(EbookData ebookData, Book book) {
 		for (Entry<String, byte[]> entry : ebookData.getEbookElements().entrySet()) {
 			String elementName = entry.getKey();
-			book.addSection(elementName, new Resource(entry.getValue(), elementName));	
+			book.addSection(elementName, new Resource(entry.getValue(), elementName + HTML_EXTENSION));	
 		}
 	}
 
