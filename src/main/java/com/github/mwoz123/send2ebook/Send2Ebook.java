@@ -5,8 +5,8 @@ import java.io.IOException;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import com.github.mwoz123.send2ebook.converter.Converter;
-import com.github.mwoz123.send2ebook.converter.EpubCreator;
+import com.github.mwoz123.send2ebook.creator.EpubCreator;
+import com.github.mwoz123.send2ebook.creator.Creator;
 import com.github.mwoz123.send2ebook.input.InputProcessor;
 import com.github.mwoz123.send2ebook.input.UrlInputProcessor;
 import com.github.mwoz123.send2ebook.model.Ebook;
@@ -26,7 +26,7 @@ public class Send2Ebook {
 		if (args != null && args.length > 0) {
 
 			InputProcessor<String> inputProcessor = new UrlInputProcessor();
-			Converter<EpubEbook> converter = new EpubCreator();
+			Creator<EpubEbook> creator = new EpubCreator();
 			
 			Storage storage = FtpStorage.getInstance();
 			Connection connection = getConnectionFromPropertyFile();
@@ -37,7 +37,7 @@ public class Send2Ebook {
 				EbookData ebookData = inputProcessor.transformInput(url);
 
 				logger.debug("Creating Epub");
-				Ebook ebook = converter.createOutputEbook(ebookData);
+				Ebook ebook = creator.createOutputEbook(ebookData);
 
 				logger.debug("Connecting to storage server");
 				storage.connect(connection);

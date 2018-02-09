@@ -1,4 +1,4 @@
-package com.github.mwoz123.send2ebook.converter;
+package com.github.mwoz123.send2ebook.creator;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
@@ -11,7 +11,7 @@ import nl.siegmann.epublib.epub.EpubWriter;
 import com.github.mwoz123.send2ebook.model.EbookData;
 import com.github.mwoz123.send2ebook.model.epub.EpubEbook;
 
-public class EpubCreator implements Converter<EpubEbook>{
+public class EpubCreator implements Creator<EpubEbook>{
 	
 	private final static String HTML_EXTENSION = ".html";
 
