@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ivy-module version="2.0" xmlns:m="http://ant.apache.org/ivy/maven">
+  <info organisation="" module="send2ebook" revision="0.7" status="integration" publication="20180209210551">
+    <description/>
+  </info>
+  <configurations>
+    <conf name="archives" visibility="public" description="Configuration for archive artifacts."/>
+    <conf name="compile" visibility="private" description="Compile classpath for source set 'main'."/>
+    <conf name="default" visibility="public" description="Configuration for default artifacts." extends="runtime"/>
+    <conf name="runtime" visibility="private" description="Runtime classpath for source set 'main'." extends="compile"/>
+    <conf name="testCompile" visibility="private" description="Compile classpath for source set 'test'." extends="compile"/>
+    <conf name="testRuntime" visibility="private" description="Runtime classpath for source set 'test'." extends="runtime,testCompile"/>
+  </configurations>
+  <publications>
+    <artifact name="send2ebook" type="jar" ext="jar" conf="archives,runtime"/>
+    <artifact name="send2ebook-with-dependecies" type="jar" ext="jar" conf="archives"/>
+  </publications>
+  <dependencies>
+    <dependency org="commons-collections" name="commons-collections" rev="3.2" conf="compile-&gt;default"/>
+    <dependency org="org.jsoup" name="jsoup" rev="1.11.2" conf="compile-&gt;default"/>
+    <dependency org="nl.siegmann.epublib" name="epublib-core" rev="3.1" conf="compile-&gt;default"/>
+    <dependency org="org.apache.logging.log4j" name="log4j-api" rev="2.10.0" conf="compile-&gt;default"/>
+    <dependency org="org.apache.logging.log4j" name="log4j-core" rev="2.10.0" conf="compile-&gt;default"/>
+    <dependency org="commons-net" name="commons-net" rev="3.6" conf="compile-&gt;default"/>
+    <dependency org="junit" name="junit" rev="4.+" conf="testCompile-&gt;default"/>
+  </dependencies>
+</ivy-module>
