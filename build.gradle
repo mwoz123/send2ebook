@@ -2,6 +2,7 @@ apply plugin: 'java'
 apply plugin: 'eclipse'
 
 sourceCompatibility = 1.7
+group = 'com.github.mwoz123'
 version = '0.7'
 jar {
     manifest {
