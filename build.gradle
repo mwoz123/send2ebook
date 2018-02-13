@@ -3,7 +3,7 @@ apply plugin: 'eclipse'
 
 sourceCompatibility = 1.7
 group = 'com.github.mwoz123'
-version = '0.7'
+version = '0.8'
 jar {
     manifest {
         attributes 'Main-Class': 'com.github.mwoz123.send2ebook.Send2Ebook'
@@ -19,18 +19,23 @@ repositories {
 }
 
 dependencies {
-    compile group: 'commons-collections', name: 'commons-collections', version: '3.2'
+	compile group: 'commons-io', name: 'commons-io', version: '2.6'
+	compile group: 'commons-net', name: 'commons-net', version: '3.6'
     compile group: 'org.jsoup', name: 'jsoup', version: '1.11.2'
     compile group: 'nl.siegmann.epublib', name: 'epublib-core', version: '3.1'
-    compile group: 'org.apache.logging.log4j', name: 'log4j-api', version: '2.10.0'
-  	compile group: 'org.apache.logging.log4j', name: 'log4j-core', version: '2.10.0'
-	compile group: 'commons-net', name: 'commons-net', version: '3.6'
+    compile group: 'org.apache.logging.log4j', name: 'log4j-api', version: '2.3'
+  	compile group: 'org.apache.logging.log4j', name: 'log4j-core', version: '2.3'
     testCompile group: 'junit', name: 'junit', version: '4.+'
 }
 
 
 task wrapper(type: Wrapper) {
     gradleVersion = '2.0'
+}
+
+task copySampleConnection(type: Copy) {
+    from 'src/main/resources/sampleConnection.properties'
+    into 'repo/com/github/mwoz123/'+ version
 }
 
 task fatJar(type: Jar) {
@@ -45,9 +50,11 @@ task fatJar(type: Jar) {
 uploadArchives {
     repositories {
        flatDir {
-           dirs 'repo/'+ version
+           dirs 'repo/com/github/mwoz123/'+ version
        }
     }
-    artifacts {archives fatJar}
-    
+    artifacts {
+    	archives fatJar 
+    	copySampleConnection
+    }
 }

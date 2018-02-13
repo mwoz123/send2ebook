@@ -63,7 +63,9 @@ public class FtpStorage implements Storage<FtpConnection>{
 
 	public void storeFile(Ebook ebook)
 			throws IOException {
-		ftpClient.storeFile(ebook.getTitle() + ebook.getFileExtension(), ebook.getEbookStream());
+		String filename = ebook.getTitle() + ebook.getFileExtension();
+		LOGGER.debug("Storing file: {} to FTP", filename );
+		ftpClient.storeFile(filename, ebook.getEbookStream());
 	}
 
 

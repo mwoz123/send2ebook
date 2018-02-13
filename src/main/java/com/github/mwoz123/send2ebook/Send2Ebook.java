@@ -19,7 +19,9 @@ import com.github.mwoz123.send2ebook.util.PropertyConfigImporter;
 
 public class Send2Ebook {
 
-	public static Logger logger = LogManager.getLogger(Send2Ebook.class);
+	private static final Logger LOGGER = LogManager.getLogger(Send2Ebook.class);
+	
+	private static final String CONNECTION_FILE_PATH_PROPERTY = "connection.file.path";
 
 	public static void main(String[] args) throws IOException {
 
@@ -32,36 +34,38 @@ public class Send2Ebook {
 			Connection connection = getConnectionFromPropertyFile();
 			
 			for (String url : args) {
-				logger.info("Starting download and clean up");
+				LOGGER.info("Starting download : {} and clean up ", url);
 
-				EbookData ebookData = inputProcessor.transformInput(url);
+				boolean processTextOnly = false;
+				EbookData ebookData = inputProcessor.transformInput(url, processTextOnly);
 
-				logger.debug("Creating Epub");
+				LOGGER.debug("Creating Epub");
 				Ebook ebook = creator.createOutputEbook(ebookData);
 
-				logger.debug("Connecting to storage server");
+				LOGGER.debug("Connecting to storage server");
 				storage.connect(connection);
 
-				logger.debug("Saving file to server");
+				LOGGER.debug("Saving file to server");
 				storage.storeFile(ebook);
 
-				logger.info("Succesfully finished");
+				LOGGER.info("Succesfully finished");
 			}
 			storage.disconnect();
 		} else {
-			logger.error("Missing input urls");
+			LOGGER.error("Missing input urls");
 		}
 	}
 
 	private static Connection getConnectionFromPropertyFile() throws IOException {
-		String connectionFilePath = System.getProperty("connection.file.path");
+		
+		String connectionFilePath = System.getProperty(CONNECTION_FILE_PATH_PROPERTY);
 
 		try {
 			return PropertyConfigImporter.getConnection(connectionFilePath);
 		} catch (IOException e) {
-			logger.error("Could not file connection property file.\n"
+			LOGGER.error("Could not file connection property file.\n"
 					+ "Use commandline argument: \n"
-					+ "'-Dconnection.file.path=/path_to_your_connection_file.properties'\n"
+					+ "'-D" +CONNECTION_FILE_PATH_PROPERTY +"=/path_to_your_connection_file.properties'\n"
 					+ "to specify path to your config property file");
 			throw e;
 		}

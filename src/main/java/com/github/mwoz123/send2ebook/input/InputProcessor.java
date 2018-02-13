@@ -6,7 +6,7 @@ import com.github.mwoz123.send2ebook.model.EbookData;
 
 public interface InputProcessor<T> {
 
-	EbookData transformInput(T t) throws IOException;
+	EbookData transformInput(T t, boolean processTextOnly) throws IOException;
 	
 	
 }
