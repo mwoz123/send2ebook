@@ -14,7 +14,7 @@ PC/Android phone -> gets url -> download -> converts to epub -> stores to server
 
 Ebook reader downloads it, and it's ready to read;) 
 
-(I only know [Koreader](https://github.com/koreader/koreader) has dedicated plugin [Send2Ebook (reciever)] to download from ftp, but feel free to add it to your favorite Ebook reader program;)
+I only know [Koreader](https://github.com/koreader/koreader) has dedicated plugin (Send2Ebook (reciever)), but you can use your favourite app to download documents from ftp;)
 
 ## 3 simple steps
 interfaces: [InputProcessor](https://github.com/mwoz123/send2ebook/blob/master/src/main/java/com/github/mwoz123/send2ebook/input/InputProcessor.java) -> [Creator](https://github.com/mwoz123/send2ebook/blob/master/src/main/java/com/github/mwoz123/send2ebook/creator/Creator.java) -> [Storage](https://github.com/mwoz123/send2ebook/blob/master/src/main/java/com/github/mwoz123/send2ebook/storage/Storage.java)
