@@ -8,7 +8,13 @@ This is PC version (commandline, java lib).
 **Android version is located [here](https://github.com/koreader/android-send2ebook)**
 
 ## How it works
-PC/Android phone -> gets url -> download -> converts to epub -> stores to server(ftp) -> Epub reader downloads (and removes) epub from ftp (currently only [Koreader](https://github.com/koreader/koreader) has plugin but feel free to add it to your Ebook reader program;)
+PC/Android phone -> gets url -> download -> converts to epub -> stores to server(ftp) 
+
+->
+
+Ebook reader downloads it, and it's ready to read;) 
+
+(I only know [Koreader](https://github.com/koreader/koreader) has dedicated plugin [Send2Ebook (reciever)] to download from ftp, but feel free to add it to your favorite Ebook reader program;)
 
 ## 3 simple steps
 interfaces: [InputProcessor](https://github.com/mwoz123/send2ebook/blob/master/src/main/java/com/github/mwoz123/send2ebook/input/InputProcessor.java) -> [Creator](https://github.com/mwoz123/send2ebook/blob/master/src/main/java/com/github/mwoz123/send2ebook/creator/Creator.java) -> [Storage](https://github.com/mwoz123/send2ebook/blob/master/src/main/java/com/github/mwoz123/send2ebook/storage/Storage.java)
