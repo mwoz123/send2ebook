@@ -105,7 +105,7 @@ public class UrlInputProcessor implements InputProcessor<String> {
 			img.attr(IMG_SRC_ATTR, imgNewSrc);
 			allreadyProcessedSet.put(imgSrc, imgNewSrc);
 		} catch (IOException ex) {
-			LOGGER.error("Couldn't save image ", ex);
+			LOGGER.warn("Couldn't save image ", ex);
 		}
 	}
 
