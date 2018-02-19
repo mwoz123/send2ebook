@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ivy-module version="2.0" xmlns:m="http://ant.apache.org/ivy/maven">
-  <info organisation="com.github.mwoz123" module="send2ebook" revision="0.85" status="integration" publication="20180219190352">
+  <info organisation="com.github.mwoz123" module="send2ebook" revision="0.85" status="integration" publication="20180219195822">
     <description/>
   </info>
   <configurations>
