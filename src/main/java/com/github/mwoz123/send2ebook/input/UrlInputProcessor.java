@@ -16,6 +16,7 @@ import org.jsoup.select.Elements;
 
 import com.github.mwoz123.send2ebook.model.EbookData;
 import com.github.mwoz123.send2ebook.util.TitleExtractor;
+import com.github.mwoz123.send2ebook.util.FilenameSanitizer;
 
 public class UrlInputProcessor implements InputProcessor<String> {
 
@@ -33,7 +34,7 @@ public class UrlInputProcessor implements InputProcessor<String> {
 		Document oryginalDoc = Jsoup.connect(urlString).get();
 		Document cleanedUpDoc = this.cleanDocument(oryginalDoc);
 
-		String titleFromUrl = TitleExtractor.extractTitleFromUrl(urlString);
+		String titleFromUrl = FilenameSanitizer.replaceInvalidChars(oryginalDoc.title());
 
 		EbookData ebookData = new EbookData();
 		ebookData.setTitle(titleFromUrl);
@@ -105,7 +106,7 @@ public class UrlInputProcessor implements InputProcessor<String> {
 			img.attr(IMG_SRC_ATTR, imgNewSrc);
 			allreadyProcessedSet.put(imgSrc, imgNewSrc);
 		} catch (IOException ex) {
-			LOGGER.warn("Couldn't save image ", ex);
+			LOGGER.warn("Couldn't process image for url: {}, Reason : {}", imgSrc, ex.getMessage());
 		}
 	}
 
