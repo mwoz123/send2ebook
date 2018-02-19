@@ -25,7 +25,10 @@ example implementation:
 
 ## Requirements:
 
-java (jre) >= 7.
+- java (jre) >= 7.
+- ftp account
+
+You don't have ftp account? No worries. There're thousands [free on Internet](https://www.google.com/search?q=best+free+ftp+hosting)
 
 ## Configuration
 
