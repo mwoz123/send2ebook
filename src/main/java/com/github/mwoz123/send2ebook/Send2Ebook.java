@@ -34,21 +34,21 @@ public class Send2Ebook {
 			Connection connection = getConnectionFromPropertyFile();
 			
 			for (String url : args) {
-				LOGGER.info("Starting download : {} and clean up ", url);
+				LOGGER.info("Starting download: '{}' and clean up ", url);
 
 				boolean processTextOnly = false;
 				EbookData ebookData = inputProcessor.transformInput(url, processTextOnly);
 
-				LOGGER.debug("Creating Epub");
+				LOGGER.info("Creating Epub");
 				Ebook ebook = creator.createOutputEbook(ebookData);
 
-				LOGGER.debug("Connecting to storage server");
+				LOGGER.info("Connecting to storage server: {}", connection.getHost());
 				storage.connect(connection);
 
-				LOGGER.debug("Saving file to server");
+				LOGGER.info("Saving file '{}' to server", ebook.getTitle());
 				storage.storeFile(ebook);
 
-				LOGGER.info("Succesfully finished");
+				LOGGER.info("Succesfully finished.");
 			}
 			storage.disconnect();
 		} else {

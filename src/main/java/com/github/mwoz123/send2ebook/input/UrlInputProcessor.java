@@ -64,7 +64,7 @@ public class UrlInputProcessor implements InputProcessor<String> {
 	}
 
 	private void addImages(Document cleanedUpDoc, EbookData ebookData) {
-		LOGGER.debug("Processing images");
+		LOGGER.info("Processing images");
 		Elements images = cleanedUpDoc.getElementsByTag("img");
 		Map<String, String> allreadyProcessedMap = new HashMap<>();
 
