@@ -35,6 +35,7 @@ public class FtpStorage implements Storage<FtpConnection>{
 	public void connect(FtpConnection connection) throws IOException {
 		if (ftpClient == null)
 			ftpClient = new FTPClient();
+			ftpClient.setAutodetectUTF8(true);
 
 		if (!ftpClient.isConnected()) {
 			ftpClient.connect(connection.getHost());

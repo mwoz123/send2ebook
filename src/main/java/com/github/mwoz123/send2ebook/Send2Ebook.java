@@ -34,7 +34,7 @@ public class Send2Ebook {
 			Connection connection = getConnectionFromPropertyFile();
 			
 			for (String url : args) {
-				LOGGER.info("Starting download: '{}' and clean up ", url);
+				LOGGER.info("Processing url: '{}'", url);
 
 				boolean processTextOnly = false;
 				EbookData ebookData = inputProcessor.transformInput(url, processTextOnly);

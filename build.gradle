@@ -3,7 +3,7 @@ apply plugin: 'eclipse'
 
 sourceCompatibility = 1.7
 group = 'com.github.mwoz123'
-version = '0.85'
+version = '0.86'
 jar {
     manifest {
         attributes 'Main-Class': 'com.github.mwoz123.send2ebook.Send2Ebook'

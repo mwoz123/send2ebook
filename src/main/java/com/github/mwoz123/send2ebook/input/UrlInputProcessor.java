@@ -20,12 +20,14 @@ import com.github.mwoz123.send2ebook.util.FilenameSanitizer;
 
 public class UrlInputProcessor implements InputProcessor<String> {
 
+	private static final String MAIN_CONTEXT_NAME = "Context";
+
 	private static final Logger LOGGER = LogManager
 			.getLogger(UrlInputProcessor.class);
 
 	private final static Whitelist CLEAN_UP_LEVEL = Whitelist.basicWithImages();
 
-	private final static String HTML_EXTENSION = ".html";
+	private final static String XHTML_EXTENSION = ".xhtml";
 	private final static String IMG_SRC_ATTR = "src";
 
 	public EbookData transformInput(String urlString, boolean processTextOnly)
@@ -34,17 +36,17 @@ public class UrlInputProcessor implements InputProcessor<String> {
 		Document oryginalDoc = Jsoup.connect(urlString).get();
 		Document cleanedUpDoc = this.cleanDocument(oryginalDoc);
 
-		String titleFromUrl = FilenameSanitizer.replaceInvalidChars(oryginalDoc.title());
+		String title = FilenameSanitizer.replaceInvalidChars(oryginalDoc.title());
 
 		EbookData ebookData = new EbookData();
-		ebookData.setTitle(titleFromUrl);
+		ebookData.setTitle(title);
 
 		if (!processTextOnly) {
 			this.addImages(cleanedUpDoc, ebookData);
 			// TODO add CSS styles?
 		}
 		String cleanedUpDocHtml = cleanedUpDoc.html();
-		ebookData.addElement(titleFromUrl + HTML_EXTENSION,
+		ebookData.addElement(MAIN_CONTEXT_NAME + XHTML_EXTENSION,
 				cleanedUpDocHtml.getBytes());
 
 		return ebookData;
