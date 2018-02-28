@@ -1,5 +1,6 @@
 apply plugin: 'java'
 apply plugin: 'eclipse'
+apply plugin: 'maven'
 
 sourceCompatibility = 1.7
 group = 'com.github.mwoz123'
@@ -47,14 +48,16 @@ task fatJar(type: Jar) {
     with jar
 }
 
+
 uploadArchives {
     repositories {
-       flatDir {
-           dirs 'repo/com/github/mwoz123/'+ version
-       }
+       
+       mavenDeployer {
+    	repository(url: "file://"+ System.getProperty("user.dir") +"/repo/")     
+  		}
     }
     artifacts {
-    	archives fatJar 
-    	copySampleConnection
+    	fatJar 
     }
 }
+
