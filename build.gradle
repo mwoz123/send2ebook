@@ -43,6 +43,8 @@ task fatJar(type: Jar) {
     manifest {
         attributes 'Main-Class': 'com.github.mwoz123.send2ebook.Send2Ebook'
     }
+    version= ""
+    destinationDir = file("$rootDir/commandline/")
     baseName = project.getName() + '-with-dependecies'
     from { configurations.compile.collect { it.isDirectory() ? it : zipTree(it) } }
     with jar
