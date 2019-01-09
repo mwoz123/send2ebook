@@ -14,7 +14,7 @@ import com.github.mwoz123.send2ebook.model.EbookData;
 import com.github.mwoz123.send2ebook.model.epub.EpubEbook;
 import com.github.mwoz123.send2ebook.storage.Connection;
 import com.github.mwoz123.send2ebook.storage.Storage;
-import com.github.mwoz123.send2ebook.storage.ftp.FtpStorage;
+import com.github.mwoz123.send2ebook.storage.ftp.SftpStorage;
 import com.github.mwoz123.send2ebook.util.PropertyConfigImporter;
 
 public class Send2Ebook {
@@ -30,7 +30,7 @@ public class Send2Ebook {
 			InputProcessor<String> inputProcessor = new UrlInputProcessor();
 			Creator<EpubEbook> creator = new EpubCreator();
 			
-			Storage storage = FtpStorage.getInstance();
+			Storage storage = SftpStorage.getInstance();
 			Connection connection = getConnectionFromPropertyFile();
 			
 			for (String url : args) {
